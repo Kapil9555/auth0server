@@ -32,12 +32,12 @@ export const authController = async (req, res) => {
             },
         });
 
-        // await transporter.sendMail({
-        //     from: process.env.EMAIL_USER,
-        //     to: userEmail,
-        //     subject: "Your Auth Token",
-        //     text: `Here is your authentication token: ${token}`,
-        // });
+        await transporter.sendMail({
+            from: process.env.EMAIL_USER,
+            to: userEmail,
+            subject: "Your Auth Token",
+            text: `Here is your authentication token: ${token}`,
+        });
 
         res.json({ message: "Email sent successfully!" });
     } catch (error) {
