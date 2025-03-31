@@ -24,7 +24,6 @@ export const authController = async (req, res) => {
             return res.status(400).json({ error: "User email not found" });
         }
 
-        // Configure email transporter
         const transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
@@ -33,13 +32,12 @@ export const authController = async (req, res) => {
             },
         });
 
-        // Send email
-        await transporter.sendMail({
-            from: process.env.EMAIL_USER,
-            to: userEmail,
-            subject: "Your Auth Token",
-            text: `Here is your authentication token: ${token}`,
-        });
+        // await transporter.sendMail({
+        //     from: process.env.EMAIL_USER,
+        //     to: userEmail,
+        //     subject: "Your Auth Token",
+        //     text: `Here is your authentication token: ${token}`,
+        // });
 
         res.json({ message: "Email sent successfully!" });
     } catch (error) {
